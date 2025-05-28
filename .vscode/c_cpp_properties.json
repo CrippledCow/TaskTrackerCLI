@@ -3,17 +3,15 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "C:/msys64/ucrt64/include/**",
+                "C:/msys64/ucrt64/lib/clang/20/include/**"
             ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
-            ],
-            "compilerPath": "C:\\msys64\\ucrt64\\bin\\gcc.exe",
+            "defines": [],
+            "compilerPath": "C:\\msys64\\ucrt64\\bin\\clang++.exe",
             "cStandard": "c23",
             "cppStandard": "c++23",
-            "intelliSenseMode": "windows-gcc-x64"
+            "intelliSenseMode": "clang-x64"
         }
     ],
     "version": 4

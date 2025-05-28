@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "cppbuild",
+      "label": "C/C++: clang++.exe build active file",
+      "command": "C:\\msys64\\ucrt64\\bin\\clang++.exe",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-std=c++23",
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe",
+        "-stdlib=libc++" // Use libc++ for Clang's standard library
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": ["$gcc"], // Works with Clang too
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "compiler: C:\\msys64\\ucrt64\\bin\\clang++.exe"
+    }
+  ]
+}
