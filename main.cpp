@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include "json.hpp"
 #include "fstream"
+#include <string.h>
 
 using json = nlohmann::json;
 using namespace std;
@@ -163,7 +164,62 @@ class TaskManager{
                 cout << "ID: " << pair.first << " - " << pair.second.getDescription() << endl;
             }
         }
+        void processPositionalArgument(string posArg)
+        {
+            string numberString;
+            int j = 0;
 
+            for(int i = 0; i < posArg.length(); i++)
+            {
+                if(posArg[i] <= '0' && posArg[i] <= '9')
+                {
+                    numberString[j] = posArg[i];
+                    j++;
+                }
+            }
+
+            int foundId = stoi(numberString);
+
+            if(posArg.contains("task-cli"));
+            {
+                if(posArg.contains("add"))
+                {
+                    int quotationIndex1, quotationIndex2;
+                    quotationIndex1 = posArg.find('\"');
+                    quotationIndex2 = posArg.find('\"', quotationIndex1+1);
+                    string subStringAdded;
+                    for(int i = quotationIndex1; i < quotationIndex2+1; i++)
+                    {
+                        subStringAdded[i] = posArg[quotationIndex1 + i];
+                    }
+                    addTask(subStringAdded);
+                }
+                if(posArg.contains("mark-in-progress"))
+                {
+                    markInProgress(foundId);
+                }
+                if(posArg.contains("mark-done"))
+                {
+                    markInProgress(foundId);
+                }
+                if(posArg.contains("list"))
+                {
+                    list();
+                }
+                if(posArg.contains("list todo"))
+                {
+                    listTodo();
+                }
+                if(posArg.contains("list in-progress"))
+                {
+                    listInProgress();
+                }
+                if(posArg.contains("list done"))
+                {
+                    listDone();
+                }
+            }
+        }
 };
 
 int Task::objectCount = 0;
@@ -172,17 +228,11 @@ int main()
 {
     TaskManager TaskManager1;
     string userArgument;
-    TaskManager1.addTask("This is a basic description");
-    TaskManager1.addTask("This is another basic description");
-    TaskManager1.printTaskDetails(1);
-    TaskManager1.printTaskDetails(2);
-    TaskManager1.listTodo();
-    TaskManager1.markInProgress(1);
-    TaskManager1.listInProgress();
-    TaskManager1.addTask("This is a funny description");
-    TaskManager1.markInProgress(2);
-    TaskManager1.list();
-    TaskManager1.saveToFile();
-    TaskManager1.addTask("Hi, how are you?");
-    TaskManager1.saveToFile();
+    
+    while(1)
+    {
+        cout << "Enter your command" << endl;
+        cin >> userArgument;
+        TaskManager1.processPositionalArgument(userArgument);
+    }
 }
